@@ -117,7 +117,6 @@ gapminder_country_summary <- gapminder %>%
 #            MAPS             #
 
 
-
 map_data("world") %>%
   rename(country = region) %>%
   left_join(gapminder_country_summary, by = "country") %>%
@@ -129,7 +128,34 @@ map_data("world") %>%
 
 
 
+# HOMEWORK -- repeating world map, but with fert instead of lifeExp
+mean_fert <- gapminder_plus %>%
+  group_by(country) %>%
+  summarize(mean_fert = mean(fert))
+map_data("world") %>%
+  rename(country = region) %>%
+  left_join(mean_fert, by = "country") %>%
+  ggplot() +
+  geom_polygon(mapping = aes(x = long, y = lat, group =  group, fill = mean_fert))
 
 
 
+
+
+# LUKAS TRIES TO SOLVE THE GRAY COUNTRIES #
+
+library(countrycode)
+
+lukasTest <- mean_fert
+lukasTest$country[lukasTest$country == "United States"] <- "USA"
+lukasTest$country[lukasTest$country == "United Kingdom"] <- "UK"
+
+#lukasTest$countryCode = lukasTest$country
+#lukasTest$countryCode = countrycode(lukasTest$countryCode, 'country.name', 'iso3c')
+#lukasTest$countryCode = iso.expand(lukasTest$countryCode)
+map_data("world") %>%
+  rename(country = region) %>%
+  left_join(lukasTest, by = "country") %>%
+  ggplot() +
+  geom_polygon(mapping = aes(x = long, y = lat, group =  group, fill = mean_fert))
 
