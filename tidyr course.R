@@ -75,7 +75,7 @@ raw_infantMort %>%
   mutate(year = as.integer(year))
 
 #We want to save it as a variable
-mort <- raw_infantMort %>%
+infantMort <- raw_infantMort %>%
   rename(country = `Infant mortality rate`) %>%
   gather(key = year, value = infantMort, -country) %>%
   mutate(year = as.integer(year)) %>%
@@ -86,4 +86,24 @@ mort <- raw_infantMort %>%
 
 
 #           JOINING DATASETS           #
-gapminder
+
+gapminder %>%
+  left_join(fert, by = c("year", "country")) %>%
+  left_join(infantMort, by = c("year", "country"))
+
+
+# We want to save it as an object 
+gapminder_plus <- gapminder %>%
+  left_join(fert, by = c("year", "country")) %>%
+  left_join(infantMort, by = c("year", "country"))
+
+gapminder_plus
+
+
+
+
+
+
+#        producing a file of the dataset            #
+
+write_csv(gapminder_plus, "gapminder_plus.csv")

@@ -346,3 +346,14 @@ p<-ggplotly(p)
 
 #Runs the animation
 p
+
+#  In order to make your first commit, you need to introduce yourself to GIT
+# http://happygitwithr.com/hello-git.html
+# You would need then to issue the following commands in TERMINAL (Shell), of course using your name and email
+# IN TERMINAL!!!!
+git config --global user.name 'Kristina Støren'
+git config --global user.email 'k.s.storen@cemo.uio.no'
+git config --global --list
+
+
+# Last command will ensure that you have succeeded in defining your name and email
