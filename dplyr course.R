@@ -1,6 +1,11 @@
 # Pipe
 # %>%
 
+# What is at the left side of the pipe is automatically inserted as the first argument in the next function
+
+
+
+
 # Function SELECT: We are only interested in the countries
 gapminder %>% select(country)
 

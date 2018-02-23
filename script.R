@@ -27,7 +27,7 @@
 #'  
 #' Uncomment the following lines to install necessary packages
 
-#install.packages("tidyverse")
+install.packages("tidyverse")
 #install.packages("maps")
 #install.packages("gapminder")
 
